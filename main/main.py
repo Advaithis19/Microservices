@@ -28,11 +28,12 @@ class Product(db.Model):
 
 @dataclass
 class ProductUser(db.Model):
+
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer)
     product_id = db.Column(db.Integer)
-
-    UniqueConstraint('user_id', 'product_id', name="user_product_unique")
+    
+    UniqueConstraint(user_id, product_id, name="user_product_unique")
 
 @app.route('/api/products/')
 def index():

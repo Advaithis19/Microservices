@@ -1,7 +1,7 @@
 import pika, json
 from main import Product, db
 
-params = pika.URLParameters('amqps://higztoqp:ffRuxHRpy7Qcn4qgYferjRKUAE9VWiCu@beaver.rmq.cloudamqp.com/higztoqp')
+params = pika.URLParameters('amqps://tksrnopu:N9ILvlNaLc4ndbTD31M2QlJhr04b2Uv6@beaver.rmq.cloudamqp.com/tksrnopu')
 
 connection = pika.BlockingConnection(params)
 
@@ -15,7 +15,7 @@ def callback(ch, method, properties, body):
     data = json.loads(body)
     print(data)
 
-    if properties.content_type == 'product_created':
+    if properties.content_type == 'product_created':    
         product = Product(id=data['id'], title=data['title'], image=data['image'])
         db.session.add(product)
         db.session.commit()
